@@ -1,0 +1,40 @@
+new pelaporan
+  field checking DONE
+    if not enough(400 missing someting)  DONE
+  login
+    wrong password(401 wrong password)
+  check if nik exist
+    if exist
+      add measurement
+      return nik exist, success
+    not
+      create new balita+measurement
+      return nik not exist, success
+  if filling process error
+    return 500
+
+// interface Balita {
+//     username:
+//     password:
+//   namaAnak: string,
+//   jenisKelamin: string, // 'L' or 'P'
+//   anakKeBerapa: number,
+//   nik: string,
+//   tanggalLahir: Date,
+//   alamat: string,
+//   rt: string,
+//   rw: string,
+//   provinsi: string, // KALIMANTAN SELATAN
+//   kabupatenKota: string, // KAB TABALONG
+//   kecamatan: string, // KELUA
+//   desaKelurahan: string,
+//   namaOrangTua: string,
+//   noWaPelapor: string,
+// }
+
+// interface Pengukuran {
+//   nik: string,
+//   tanggalPengukuran: Date,
+//   tinggiBadan: number,
+//   beratBadan: number,
+// }

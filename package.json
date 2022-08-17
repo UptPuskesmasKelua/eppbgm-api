@@ -1,0 +1,25 @@
+{
+  "name": "eppbgm-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^20.2.2",
+    "@tensorflow/tfjs-node": "^3.19.0",
+    "canvas": "^2.9.3",
+    "joi": "^17.6.0",
+    "puppeteer": "^16.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.22.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.19"
+  }
+}
