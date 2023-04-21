@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 const puppeteer = require('puppeteer');
+const userAgent = require('user-agents');
 const { login } = require('../actions/login');
 const { CaptchaError } = require('../errors/captcha_error');
 const { LoginError } = require('../errors/login_error');
@@ -8,6 +9,8 @@ const { addBalita } = require('../actions/add_balita');
 const { addMeasurement } = require('../actions/add_measurement');
 
 const pelaporanAdd = async (request, h) => {
+  console.log('jalankan laporan add');
+
   const {
     username,
     password,
@@ -38,6 +41,8 @@ const pelaporanAdd = async (request, h) => {
     ],
   });
   const page = await browser.newPage();
+  await page.setUserAgent(userAgent.random().toString())
+  await page.setViewport({ width: 1440, height: 900 });
 
   // Logging in
   // eslint-disable-next-line no-unreachable-loop
@@ -50,6 +55,8 @@ const pelaporanAdd = async (request, h) => {
   } catch (error) {
     if (error instanceof CaptchaError) {
       await browser.close();
+      console.log({ error });
+
       return h.response({
         statusCode: 403,
         error: 'Forbidden',
@@ -58,6 +65,8 @@ const pelaporanAdd = async (request, h) => {
     }
     if (error instanceof LoginError) {
       await browser.close();
+      console.log({ error });
+
       return h.response({
         statusCode: 401,
         error: 'Unauthorized',
@@ -65,6 +74,8 @@ const pelaporanAdd = async (request, h) => {
       }).code(401);
     }
     await browser.close();
+    console.log({ error });
+
     return h.response({
       statusCode: 500,
       error: 'Internal Server Error',
@@ -72,10 +83,13 @@ const pelaporanAdd = async (request, h) => {
     }).code(500);
   }
 
+  await console.log('login berhasil');
+
   // NIK Checking
   let isBalitaExist;
   try {
     isBalitaExist = await checkNik(page, nik);
+    console.log(isBalitaExist);
   } catch (error) {
     await browser.close();
     return h.response({
@@ -85,6 +99,7 @@ const pelaporanAdd = async (request, h) => {
     }).code(500);
   }
 
+  
   if (isBalitaExist) {
     // Adding measurement if NIK exists
     try {

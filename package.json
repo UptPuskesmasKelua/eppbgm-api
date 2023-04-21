@@ -14,7 +14,8 @@
     "@tensorflow/tfjs-node": "^3.19.0",
     "canvas": "^2.9.3",
     "joi": "^17.6.0",
-    "puppeteer": "^16.1.0"
+    "puppeteer": "^16.1.0",
+    "user-agents": "^1.0.1355"
   },
   "devDependencies": {
     "eslint": "^8.22.0",

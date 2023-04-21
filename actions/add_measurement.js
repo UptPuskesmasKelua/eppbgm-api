@@ -33,6 +33,8 @@ const addMeasurement = async (page, {
 
   await page.waitForTimeout(1000);
 
+  // page.screenshot({path:'images/measurement.jpg'});
+
   // Outlier meas. check
   const pageUrl = await page.url();
   if (pageUrl.includes('ubah_data')) {

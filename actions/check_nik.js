@@ -5,6 +5,8 @@ const checkNik = async (page, nik) => {
     `https://sigiziterpadu.kemkes.go.id/ppgbm/index.php/balita/ukur/${nik}.html`,
   );
 
+  page.screenshot({path:'images/check_nik.jpg'});
+
   const nikInPage = await page.$eval(
     'form > table > tbody > tr > td:nth-of-type(3) > b',
     (el) => el.innerText,
